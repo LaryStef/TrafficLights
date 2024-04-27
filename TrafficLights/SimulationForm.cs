@@ -20,24 +20,18 @@ namespace TrafficLights
         private int duration;
         private int elapsedTime = 0;
         private int trafficLightState = 1;
-        private RoadStrip strip1 = new RoadStrip(new Point[] {
-            new Point (145, 334),
-            new Point (115, 334),
-            new Point (85, 334),
-            new Point (55, 334),
-        });
-        private CarMove carMove;
+        private List<RoadStrip> stripList = new List<RoadStrip>();
+        private List<CarMove> carMoveList = new List<CarMove>();
+        private List<Point> startPositions = new List<Point>();
         public Simulation(int duration, int intencity, int speed)
         {
             InitializeComponent();
             this.intencity = intencity;
             this.speed = speed;
             this.duration = duration;
-        }
 
-        private void Simulation_Load(object sender, EventArgs e)
-        {
-
+            addPositions();
+            timer2.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -51,25 +45,82 @@ namespace TrafficLights
             {
                 changeLights();
             }
+            addCar();
+            
             elapsedTime += 1;
         }
 
+        private void addCar()
+        {
+            Random random = new Random();
+            int stripNum = random.Next(0, 8);
+
+            if (stripList[stripNum].CountCars() < 4)
+            {
+                PictureBox car = new PictureBox();
+
+                car.Image = Properties.Resources.blueSquare;
+                car.Size = new Size(26, 26);
+                car.SizeMode = PictureBoxSizeMode.StretchImage;
+                car.Location = startPositions[stripNum];
+                Controls.Add(car);
+                car.BringToFront();
+
+                Point target = stripList[stripNum].EnqueueCar(car);
+
+                if (stripNum == 0 || stripNum == 1)
+                {
+                    carMoveList.Add(new CarMove(car, car.Location, target, 1, 0));
+                } else if (stripNum == 2 || stripNum == 3) 
+                {
+                    carMoveList.Add(new CarMove(car, car.Location, target, 0, 1));
+                } else if (stripNum == 4 || stripNum == 5)
+                {
+                    carMoveList.Add(new CarMove(car, car.Location, target, -1, 0));
+                } else if (stripNum == 6 || stripNum == 7)
+                {
+                    carMoveList.Add(new CarMove(car, car.Location, target, 0, -1));
+                }
+
+                return;
+            }
+            label3.Text = $"полоса переполнена {stripNum + 1} : {elapsedTime}";
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            PictureBox car = new PictureBox();
+            //PictureBox car = new PictureBox();
 
-            car.Image = Properties.Resources.blueSquare;
-            car.Size = new Size(26, 26);
-            car.SizeMode = PictureBoxSizeMode.StretchImage;
-            car.Location = new Point(40, 334);
-            car.Name = "car";
-            Controls.Add(car);
-            car.BringToFront();
+            //car.Image = Properties.Resources.blueSquare;
+            //car.Size = new Size(26, 26);
+            //car.SizeMode = PictureBoxSizeMode.StretchImage;
+            //car.Location = new Point(410, 585);
+            //car.Name = "car";
+            //Controls.Add(car);
+            //car.BringToFront();
 
-            Point target = strip1.AddCar(car);
-            carMove = new CarMove(car, car.Location, target);
-            label3.Text = target.ToString();
-            timer2.Enabled = true;
+            //PictureBox car2 = new PictureBox();
+
+            //car2.Image = Properties.Resources.blueSquare;
+            //car2.Size = new Size(26, 26);
+            //car2.SizeMode = PictureBoxSizeMode.StretchImage;
+            //car2.Location = new Point(410, 495);
+            //car2.Name = "car";
+            //Controls.Add(car2);
+            //car2.BringToFront();
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < carMoveList.Count; i++)
+            {
+                if (carMoveList[i].car.Location != carMoveList[i].finish)
+                {
+                    carMoveList[i].Move();
+                }
+                else
+                {
+                    carMoveList.Remove(carMoveList[i]);
+                }
+            }
         }
 
         private void changeLights()
@@ -92,12 +143,87 @@ namespace TrafficLights
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void addPositions()
         {
-            if (carMove.car.Location != carMove.finish)
+            startPositions.Add(new Point(40, 334));
+            startPositions.Add(new Point(40, 367));
+            startPositions.Add(new Point(325, 28));
+            startPositions.Add(new Point(290, 28));
+            startPositions.Add(new Point(665, 292));
+            startPositions.Add(new Point(665, 262));
+            startPositions.Add(new Point(375, 585));
+            startPositions.Add(new Point(410, 585));
+
+            RoadStrip strip1 = new RoadStrip(new Point[]
             {
-                carMove.car.Location = new Point(carMove.car.Location.X + 1, carMove.car.Location.Y);
-            }
+                new Point (145, 334),
+                new Point (115, 334),
+                new Point (85, 334),
+                new Point (55, 334)
+            });
+            RoadStrip strip2 = new RoadStrip(new Point[]
+            {
+                new Point (145, 367),
+                new Point (115, 367),
+                new Point (85, 367),
+                new Point (55, 367)
+            });
+            RoadStrip strip3 = new RoadStrip(new Point[]
+            {
+                new Point (325, 130),
+                new Point (325, 100),
+                new Point (325, 70),
+                new Point (325, 40)
+            });
+            RoadStrip strip4 = new RoadStrip(new Point[]
+            {
+                new Point (290, 130),
+                new Point (290, 100),
+                new Point (290, 70),
+                new Point (290, 40)
+            });
+            RoadStrip strip5 = new RoadStrip(new Point[]
+            {
+                new Point (555, 292),
+                new Point (585, 292),
+                new Point (615, 292),
+                new Point (645, 292)
+            });
+            RoadStrip strip6 = new RoadStrip(new Point[]
+            {
+                new Point (555, 262),
+                new Point (585, 262),
+                new Point (615, 262),
+                new Point (645, 262)
+            });
+            RoadStrip strip7 = new RoadStrip(new Point[]
+            {
+                new Point (375, 495),
+                new Point (375, 525),
+                new Point (375, 555),
+                new Point (375, 585)
+            });
+            RoadStrip strip8 = new RoadStrip(new Point[]
+            {
+                new Point (410, 495),
+                new Point (410, 525),
+                new Point (410, 555),
+                new Point (410, 585)
+            });
+
+            stripList.Add(strip1);
+            stripList.Add(strip2);
+            stripList.Add(strip3);
+            stripList.Add(strip4);
+            stripList.Add(strip5);
+            stripList.Add(strip6);
+            stripList.Add(strip7);
+            stripList.Add(strip8);
+        }
+
+        private void Simulation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

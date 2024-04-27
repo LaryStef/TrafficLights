@@ -10,15 +10,20 @@ namespace TrafficLights
 {
     internal class RoadStrip
     {
-        Queue<PictureBox> cars = new Queue<PictureBox>();
-        Point[] positions;
-        public RoadStrip(Point[] positions) {
+        private Queue<PictureBox> cars = new Queue<PictureBox>();
+        private Point[] positions;
+        public RoadStrip(Point[] positions)
+        {
             this.positions = positions;
         }
-        public Point AddCar(PictureBox car)
+        public Point EnqueueCar(PictureBox car)
         {
             cars.Enqueue(car);
             return positions[cars.Count() - 1];
+        }
+        public int CountCars()
+        {
+            return cars.Count();
         }
     }
 }
