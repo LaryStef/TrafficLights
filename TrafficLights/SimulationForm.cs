@@ -23,6 +23,9 @@ namespace TrafficLights
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
         private List<Point> startPositions = new List<Point>();
+        private List<PictureBox> carsOnFirstPosition = new List<PictureBox>();
+        // добавляем машины, которые доехали до первой позиции на светофоре
+        // при 1 едут боковые, при 0 едут верхние и нижние
         public Simulation(int duration, int intencity, int speed)
         {
             InitializeComponent();
@@ -46,7 +49,6 @@ namespace TrafficLights
                 changeLights();
             }
             addCar();
-            
             elapsedTime += 1;
         }
 
@@ -88,25 +90,7 @@ namespace TrafficLights
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //PictureBox car = new PictureBox();
-
-            //car.Image = Properties.Resources.blueSquare;
-            //car.Size = new Size(26, 26);
-            //car.SizeMode = PictureBoxSizeMode.StretchImage;
-            //car.Location = new Point(410, 585);
-            //car.Name = "car";
-            //Controls.Add(car);
-            //car.BringToFront();
-
-            //PictureBox car2 = new PictureBox();
-
-            //car2.Image = Properties.Resources.blueSquare;
-            //car2.Size = new Size(26, 26);
-            //car2.SizeMode = PictureBoxSizeMode.StretchImage;
-            //car2.Location = new Point(410, 495);
-            //car2.Name = "car";
-            //Controls.Add(car2);
-            //car2.BringToFront();
+            
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -118,8 +102,13 @@ namespace TrafficLights
                 }
                 else
                 {
+                    carsOnFirstPosition.Add(carMoveList[i].car);
                     carMoveList.Remove(carMoveList[i]);
                 }
+            }
+            if (trafficLightState == 1)
+            {
+                // создаем CarMove для первых автомобилей из 1, 2, 5, 6 полос
             }
         }
 
