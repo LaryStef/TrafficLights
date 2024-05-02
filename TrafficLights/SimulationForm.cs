@@ -23,6 +23,7 @@ namespace TrafficLights
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
         private List<Point> startPositions = new List<Point>();
+        private List<Point> finishPositions = new List<Point>();
         private List<Point> firstLinePositions = new List<Point>();
         private List<Car> carsOnFirstPosition = new List<Car>();
         // добавляем машины, которые доехали до первой позиции на светофоре
@@ -115,6 +116,10 @@ namespace TrafficLights
                     {
                         carsOnFirstPosition.Add(carMoveList[i].car);
                     }
+                    if (finishPositions.Contains(carMoveList[i].car.Location))
+                    {
+                        carMoveList[i].car.Dispose();
+                    }
                     carMoveList.Remove(carMoveList[i]);
                 }
             }
@@ -202,6 +207,15 @@ namespace TrafficLights
             startPositions.Add(new Point(665, 262));
             startPositions.Add(new Point(375, 585));
             startPositions.Add(new Point(410, 585));
+
+            finishPositions.Add(new Point(665, 334));
+            finishPositions.Add(new Point(665, 367));
+            finishPositions.Add(new Point(325, 585));
+            finishPositions.Add(new Point(290, 585));
+            finishPositions.Add(new Point(40, 292));
+            finishPositions.Add(new Point(40, 262));
+            finishPositions.Add(new Point(375, 28));
+            finishPositions.Add(new Point(410, 28));
 
             firstLinePositions.Add(new Point(145, 334));
             firstLinePositions.Add(new Point(145, 367));
