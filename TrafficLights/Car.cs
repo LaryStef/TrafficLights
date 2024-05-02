@@ -10,7 +10,7 @@ namespace TrafficLights
 {
     internal class Car: PictureBox
     {
-        private int strip;
+        public int strip;
         public Car(int strip)
         {
             this.strip = strip;

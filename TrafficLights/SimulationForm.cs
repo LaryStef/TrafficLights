@@ -55,12 +55,14 @@ namespace TrafficLights
 
         private void addCar()
         {
+            //label3.Text = $"{carsOnFirstPosition.Count}";
+
             Random random = new Random();
             int stripNum = random.Next(0, 8);
 
             if (stripList[stripNum].CountCars() < 4)
             {
-                Car car = new Car(stripNum);
+                Car car = new Car(stripNum + 1);
 
                 car.Image = Properties.Resources.blueSquare;
                 car.Size = new Size(26, 26);
@@ -87,11 +89,17 @@ namespace TrafficLights
 
                 return;
             }
-            label3.Text = $"полоса переполнена {stripNum + 1} : {elapsedTime}";
+            
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Car car = new Car(1);
+            car.Image = Properties.Resources.blueSquare;
+            car.Size = new Size(26, 26);
+            car.SizeMode = PictureBoxSizeMode.StretchImage;
+            car.Location = new Point(40, 292);
+            Controls.Add(car);
+            car.BringToFront();
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -105,21 +113,65 @@ namespace TrafficLights
                 {
                     if (firstLinePositions.Contains(carMoveList[i].car.Location))
                     {
-                        
+                        carsOnFirstPosition.Add(carMoveList[i].car);
                     }
                     carMoveList.Remove(carMoveList[i]);
                 }
             }
+
             if (trafficLightState == 1)
             {
-                // создаем CarMove для первых автомобилей из 1, 2, 5, 6 полос
-                foreach (Car car in carsOnFirstPosition)
+                for (int i = 0; i < carsOnFirstPosition.Count; i++)
                 {
-                    carMoveList.Add(new CarMove(car, car.Location, new Point(), 1, 0));
+                    switch (carsOnFirstPosition[i].strip)
+                    {
+                        case 1:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(665, 334), 1, 0));
+                            break;
+                        case 2:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(665, 367), 1, 0));
+                            break;
+                        case 5:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(40, 292), -1, 0));
+                            break;
+                        case 6:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(40, 262), -1, 0));
+                            break;
+                    }
                 }
+                carsOnFirstPosition.RemoveAll(isHorizontalMovingCar);
+            }
+            else
+            {
+                for (int i = 0; i < carsOnFirstPosition.Count; i++)
+                {
+                    switch (carsOnFirstPosition[i].strip)
+                    {
+                        case 3:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(325, 585), 0, 1));
+                            break;
+                        case 4:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(290, 585), 0, 1));
+                            break;
+                        case 7:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(375, 28), 0, -1));
+                            break;
+                        case 8:
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(410, 28), 0, -1));
+                            break;
+                    }
+                }
+                carsOnFirstPosition.RemoveAll(isVerticalMovingCar);
             }
         }
-
+        private bool isHorizontalMovingCar(Car car)
+        {
+            return (new int[] { 1, 2, 5, 6 }).Contains(car.strip);
+        }
+        private bool isVerticalMovingCar(Car car)
+        {
+            return (new int[] { 3, 4, 7, 8 }).Contains(car.strip);
+        }
         private void changeLights()
         {
             if (trafficLightState == 0)
@@ -159,7 +211,6 @@ namespace TrafficLights
             firstLinePositions.Add(new Point(555, 262));
             firstLinePositions.Add(new Point(375, 495));
             firstLinePositions.Add(new Point(410, 495));
-
 
             RoadStrip strip1 = new RoadStrip(new Point[]
             {
