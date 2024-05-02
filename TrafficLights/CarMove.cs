@@ -10,12 +10,12 @@ namespace TrafficLights
 {
     internal class CarMove
     {
-        public PictureBox car;
+        public Car car;
         public Point start;
         public Point finish;
         private int shiftX;
         private int shiftY;
-        public CarMove(PictureBox car, Point start, Point finish, int shiftX, int shiftY)
+        public CarMove(Car car, Point start, Point finish, int shiftX, int shiftY)
         {
             this.car = car;
             this.start = start;

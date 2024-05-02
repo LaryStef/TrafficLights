@@ -23,7 +23,8 @@ namespace TrafficLights
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
         private List<Point> startPositions = new List<Point>();
-        private List<PictureBox> carsOnFirstPosition = new List<PictureBox>();
+        private List<Point> firstLinePositions = new List<Point>();
+        private List<Car> carsOnFirstPosition = new List<Car>();
         // добавляем машины, которые доехали до первой позиции на светофоре
         // при 1 едут боковые, при 0 едут верхние и нижние
         public Simulation(int duration, int intencity, int speed)
@@ -59,7 +60,7 @@ namespace TrafficLights
 
             if (stripList[stripNum].CountCars() < 4)
             {
-                PictureBox car = new PictureBox();
+                Car car = new Car(stripNum);
 
                 car.Image = Properties.Resources.blueSquare;
                 car.Size = new Size(26, 26);
@@ -102,13 +103,20 @@ namespace TrafficLights
                 }
                 else
                 {
-                    carsOnFirstPosition.Add(carMoveList[i].car);
+                    if (firstLinePositions.Contains(carMoveList[i].car.Location))
+                    {
+                        
+                    }
                     carMoveList.Remove(carMoveList[i]);
                 }
             }
             if (trafficLightState == 1)
             {
                 // создаем CarMove для первых автомобилей из 1, 2, 5, 6 полос
+                foreach (Car car in carsOnFirstPosition)
+                {
+                    carMoveList.Add(new CarMove(car, car.Location, new Point(), 1, 0));
+                }
             }
         }
 
@@ -142,6 +150,16 @@ namespace TrafficLights
             startPositions.Add(new Point(665, 262));
             startPositions.Add(new Point(375, 585));
             startPositions.Add(new Point(410, 585));
+
+            firstLinePositions.Add(new Point(145, 334));
+            firstLinePositions.Add(new Point(145, 367));
+            firstLinePositions.Add(new Point(325, 130));
+            firstLinePositions.Add(new Point(290, 130));
+            firstLinePositions.Add(new Point(555, 292));
+            firstLinePositions.Add(new Point(555, 262));
+            firstLinePositions.Add(new Point(375, 495));
+            firstLinePositions.Add(new Point(410, 495));
+
 
             RoadStrip strip1 = new RoadStrip(new Point[]
             {

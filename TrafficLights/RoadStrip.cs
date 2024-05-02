@@ -10,13 +10,13 @@ namespace TrafficLights
 {
     internal class RoadStrip
     {
-        private Queue<PictureBox> cars = new Queue<PictureBox>();
+        private Queue<Car> cars = new Queue<Car>();
         private Point[] positions;
         public RoadStrip(Point[] positions)
         {
             this.positions = positions;
         }
-        public Point EnqueueCar(PictureBox car)
+        public Point EnqueueCar(Car car)
         {
             cars.Enqueue(car);
             return positions[cars.Count() - 1];
