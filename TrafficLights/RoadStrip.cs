@@ -10,8 +10,8 @@ namespace TrafficLights
 {
     internal class RoadStrip
     {
-        private Queue<Car> cars = new Queue<Car>();
-        private Point[] positions;
+        private readonly Queue<Car> cars = new Queue<Car>();
+        private readonly Point[] positions;
         public RoadStrip(Point[] positions)
         {
             this.positions = positions;
@@ -20,6 +20,10 @@ namespace TrafficLights
         {
             cars.Enqueue(car);
             return positions[cars.Count() - 1];
+        }
+        public void DequeueCar()
+        {
+            cars.Dequeue();
         }
         public int CountCars()
         {

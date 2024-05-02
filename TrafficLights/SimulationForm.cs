@@ -131,20 +131,22 @@ namespace TrafficLights
                     switch (carsOnFirstPosition[i].strip)
                     {
                         case 1:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(665, 334), 1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
+                            
                             break;
                         case 2:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(665, 367), 1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
                             break;
                         case 5:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(40, 292), -1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
                             break;
                         case 6:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(40, 262), -1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
                             break;
                     }
                 }
                 carsOnFirstPosition.RemoveAll(isHorizontalMovingCar);
+
             }
             else
             {
@@ -153,16 +155,16 @@ namespace TrafficLights
                     switch (carsOnFirstPosition[i].strip)
                     {
                         case 3:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(325, 585), 0, 1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
                             break;
                         case 4:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(290, 585), 0, 1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
                             break;
                         case 7:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(375, 28), 0, -1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
                             break;
                         case 8:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, new Point(410, 28), 0, -1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
                             break;
                     }
                 }
