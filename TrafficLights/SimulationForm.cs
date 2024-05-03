@@ -63,12 +63,13 @@ namespace TrafficLights
 
             if (stripList[stripNum].CountCars() < 4)
             {
-                Car car = new Car(stripNum + 1);
-
-                car.Image = Properties.Resources.blueSquare;
-                car.Size = new Size(26, 26);
-                car.SizeMode = PictureBoxSizeMode.StretchImage;
-                car.Location = startPositions[stripNum];
+                Car car = new Car(stripNum + 1)
+                {
+                    Image = Properties.Resources.blueSquare,
+                    Size = new Size(26, 26),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Location = startPositions[stripNum]
+                };
                 Controls.Add(car);
                 car.BringToFront();
 
@@ -94,11 +95,13 @@ namespace TrafficLights
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Car car = new Car(1);
-            car.Image = Properties.Resources.blueSquare;
-            car.Size = new Size(26, 26);
-            car.SizeMode = PictureBoxSizeMode.StretchImage;
-            car.Location = new Point(40, 292);
+            Car car = new Car(1)
+            {
+                Image = Properties.Resources.blueSquare,
+                Size = new Size(26, 26),
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = new Point(40, 292)
+            };
             Controls.Add(car);
             car.BringToFront();
         }
@@ -115,11 +118,13 @@ namespace TrafficLights
                     if (firstLinePositions.Contains(carMoveList[i].car.Location))
                     {
                         carsOnFirstPosition.Add(carMoveList[i].car);
+                        
                     }
                     if (finishPositions.Contains(carMoveList[i].car.Location))
                     {
                         carMoveList[i].car.Dispose();
                     }
+                    carMoveList[i].car.arrived = true;
                     carMoveList.Remove(carMoveList[i]);
                 }
             }
@@ -132,21 +137,23 @@ namespace TrafficLights
                     {
                         case 1:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
-                            
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 2:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 5:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 6:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                     }
                 }
                 carsOnFirstPosition.RemoveAll(isHorizontalMovingCar);
-
             }
             else
             {
@@ -156,19 +163,37 @@ namespace TrafficLights
                     {
                         case 3:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 4:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 7:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 8:
                             carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
+                            stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                     }
                 }
                 carsOnFirstPosition.RemoveAll(isVerticalMovingCar);
+            }
+            // НИХУЯ НЕ РАБОТАЕТ БЛЯ
+            for (int i = 0; i < stripList.Count; i++)
+            {
+                int carNum = 0;
+                foreach (Car car in stripList[i].cars)
+                {
+                    if (car.arrived && car.Location != stripList[i].positions[carNum])
+                    {
+                        carMoveList.Add(new CarMove(car, car.Location, stripList[i].positions[carNum], stripList[i].shifts[0], stripList[i].shifts[1]));
+                        car.arrived = false;
+                    }
+                    carNum++;
+                }
             }
         }
         private bool isHorizontalMovingCar(Car car)
@@ -234,56 +259,56 @@ namespace TrafficLights
                 new Point (115, 334),
                 new Point (85, 334),
                 new Point (55, 334)
-            });
+            }, new int[] { 1, 0 });
             RoadStrip strip2 = new RoadStrip(new Point[]
             {
                 new Point (145, 367),
                 new Point (115, 367),
                 new Point (85, 367),
                 new Point (55, 367)
-            });
+            }, new int[] { 1, 0 });
             RoadStrip strip3 = new RoadStrip(new Point[]
             {
                 new Point (325, 130),
                 new Point (325, 100),
                 new Point (325, 70),
                 new Point (325, 40)
-            });
+            }, new int[] { 0, 1 });
             RoadStrip strip4 = new RoadStrip(new Point[]
             {
                 new Point (290, 130),
                 new Point (290, 100),
                 new Point (290, 70),
                 new Point (290, 40)
-            });
+            }, new int[] { 0, 1 });
             RoadStrip strip5 = new RoadStrip(new Point[]
             {
                 new Point (555, 292),
                 new Point (585, 292),
                 new Point (615, 292),
                 new Point (645, 292)
-            });
+            }, new int[] { -1, 0 });
             RoadStrip strip6 = new RoadStrip(new Point[]
             {
                 new Point (555, 262),
                 new Point (585, 262),
                 new Point (615, 262),
                 new Point (645, 262)
-            });
+            }, new int[] { -1, 0 });
             RoadStrip strip7 = new RoadStrip(new Point[]
             {
                 new Point (375, 495),
                 new Point (375, 525),
                 new Point (375, 555),
                 new Point (375, 585)
-            });
+            }, new int[] { 0, -1 });
             RoadStrip strip8 = new RoadStrip(new Point[]
             {
                 new Point (410, 495),
                 new Point (410, 525),
                 new Point (410, 555),
                 new Point (410, 585)
-            });
+            }, new int[] { 0, -1 });
 
             stripList.Add(strip1);
             stripList.Add(strip2);

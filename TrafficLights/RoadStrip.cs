@@ -10,11 +10,13 @@ namespace TrafficLights
 {
     internal class RoadStrip
     {
-        private readonly Queue<Car> cars = new Queue<Car>();
-        private readonly Point[] positions;
-        public RoadStrip(Point[] positions)
+        public Queue<Car> cars = new Queue<Car>();
+        public Point[] positions;
+        public int[] shifts;
+        public RoadStrip(Point[] positions, int[] shifts)
         {
             this.positions = positions;
+            this.shifts = shifts;
         }
         public Point EnqueueCar(Car car)
         {

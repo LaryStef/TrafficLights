@@ -13,8 +13,8 @@ namespace TrafficLights
         public Car car;
         public Point start;
         public Point finish;
-        private int shiftX;
-        private int shiftY;
+        private readonly int shiftX;
+        private readonly int shiftY;
         public CarMove(Car car, Point start, Point finish, int shiftX, int shiftY)
         {
             this.car = car;
