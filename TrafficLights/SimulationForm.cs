@@ -16,25 +16,26 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
-        private int intencity;
-        private int speed;
         private int duration;
+        private int intencity;
         private int elapsedTime = 0;
         private int lastMovingState = 1;
         private int trafficLightState = 0;
         private int timeSinceLstChange = 0;
+
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
-        private List<Point> startPositions = new List<Point>();
-        private List<Point> finishPositions = new List<Point>();
-        private List<Point> firstLinePositions = new List<Point>();
         private List<Car> carsOnFirstPosition = new List<Car>();
+        private List<Point> finishPositions = new List<Point>();
+        private List<Point> startPositions = new List<Point>();
+        private List<Point> firstLinePositions = new List<Point>();
 
         public Simulation(int duration, int intencity, int speed)
         {
             InitializeComponent();
+            timer1.Interval = 1000 * speed;
+            timer2.Interval = 10 * speed;
             this.intencity = intencity;
-            this.speed = speed;
             this.duration = duration;
 
             addPositions();

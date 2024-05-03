@@ -40,19 +40,19 @@ namespace TrafficLights
                 intencity = 1;
             } else if (radioButton2.Checked)
             {
-                intencity = 2;
-            } else if (radioButton3.Checked) {
                 intencity = 3;
+            } else if (radioButton3.Checked) {
+                intencity = 5;
             } else {
-                error = "Интерсивность симуляции не выбрана";
+                error = "Интерсивность трафика не выбрана";
             }
 
             if (radioButton4.Checked) {
                 speed = 1;
             } else if (radioButton5.Checked) {
-                speed = 2;
-            } else if (radioButton6.Checked) {
                 speed = 3;
+            } else if (radioButton6.Checked) {
+                speed = 5;
             } else {
                 error = "Скорость симуляции не выбрана";
             }
@@ -66,6 +66,11 @@ namespace TrafficLights
 
             Form simulationForm = new Simulation(duration, intencity, speed);
             simulationForm.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
