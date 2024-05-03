@@ -111,7 +111,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.DarkGray;
-            this.pictureBox2.Image = global::TrafficLights.Properties.Resources.greenTrafficLight;
+            this.pictureBox2.Image = global::TrafficLights.Properties.Resources.redTrafficLight;
             this.pictureBox2.Location = new System.Drawing.Point(224, 501);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
@@ -121,7 +121,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::TrafficLights.Properties.Resources.greenTrafficLight;
+            this.pictureBox3.Image = global::TrafficLights.Properties.Resources.redTrafficLight;
             this.pictureBox3.Location = new System.Drawing.Point(729, 277);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 32);

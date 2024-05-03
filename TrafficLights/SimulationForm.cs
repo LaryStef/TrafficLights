@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,15 +20,16 @@ namespace TrafficLights
         private int speed;
         private int duration;
         private int elapsedTime = 0;
-        private int trafficLightState = 1;
+        private int lastMovingState = 1;
+        private int trafficLightState = 0;
+        private int timeSinceLstChange = 0;
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
         private List<Point> startPositions = new List<Point>();
         private List<Point> finishPositions = new List<Point>();
         private List<Point> firstLinePositions = new List<Point>();
         private List<Car> carsOnFirstPosition = new List<Car>();
-        // добавляем машины, которые доехали до первой позиции на светофоре
-        // при 1 едут боковые, при 0 едут верхние и нижние
+
         public Simulation(int duration, int intencity, int speed)
         {
             InitializeComponent();
@@ -41,17 +43,12 @@ namespace TrafficLights
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
             label2.Text = elapsedTime.ToString() + " секунд";
-            if (elapsedTime == duration) {
-                Close();
-            }
-            if (elapsedTime % 10 == 0)
-            {
-                changeLights();
-            }
+            if (elapsedTime == duration) { Close(); }
+            if (timeSinceLstChange == 3 || timeSinceLstChange == 10) { changeLights(); }
             addCar();
-            elapsedTime += 1;
+            elapsedTime++;
+            timeSinceLstChange++;
         }
 
         private void addCar()
@@ -129,7 +126,7 @@ namespace TrafficLights
                 }
             }
 
-            if (trafficLightState == 1)
+            if (trafficLightState == 1)                                                                                                                                                                               
             {
                 for (int i = 0; i < carsOnFirstPosition.Count; i++)
                 {
@@ -155,7 +152,7 @@ namespace TrafficLights
                 }
                 carsOnFirstPosition.RemoveAll(isHorizontalMovingCar);
             }
-            else
+            else if (trafficLightState == 2)
             {
                 for (int i = 0; i < carsOnFirstPosition.Count; i++)
                 {
@@ -181,7 +178,6 @@ namespace TrafficLights
                 }
                 carsOnFirstPosition.RemoveAll(isVerticalMovingCar);
             }
-            // НИХУЯ НЕ РАБОТАЕТ БЛЯ
             for (int i = 0; i < stripList.Count; i++)
             {
                 int carNum = 0;
@@ -206,22 +202,39 @@ namespace TrafficLights
         }
         private void changeLights()
         {
-            if (trafficLightState == 0)
+            if (timeSinceLstChange == 3 && trafficLightState == 0 && lastMovingState == 2)
             {
+                // включаем движение для горизонтальных
                 pictureBox2.Image = Properties.Resources.greenTrafficLight;
                 pictureBox3.Image = Properties.Resources.greenTrafficLight;
                 pictureBox4.Image = Properties.Resources.redTrafficLight;
                 pictureBox5.Image = Properties.Resources.redTrafficLight;
                 trafficLightState = 1;
+                lastMovingState = 1;
+                timeSinceLstChange = 0;
             }
-            else
+            if (timeSinceLstChange == 3 && trafficLightState == 0 && lastMovingState == 1)
             {
+                // включаем движение для вертикальных
                 pictureBox2.Image = Properties.Resources.redTrafficLight;
                 pictureBox3.Image = Properties.Resources.redTrafficLight;
                 pictureBox4.Image = Properties.Resources.greenTrafficLight;
                 pictureBox5.Image = Properties.Resources.greenTrafficLight;
-                trafficLightState = 0;
+                trafficLightState = 2;
+                lastMovingState = 2;
+                timeSinceLstChange = 0;
             }
+            if (timeSinceLstChange == 10 && trafficLightState != 0)
+            {
+                // включаем паузу
+                pictureBox2.Image = Properties.Resources.redTrafficLight;
+                pictureBox3.Image = Properties.Resources.redTrafficLight;
+                pictureBox4.Image = Properties.Resources.redTrafficLight;
+                pictureBox5.Image = Properties.Resources.redTrafficLight;
+                trafficLightState = 0;
+                timeSinceLstChange = 0;
+            }
+            
         }
 
         private void addPositions()
