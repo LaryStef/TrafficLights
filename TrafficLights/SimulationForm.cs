@@ -53,8 +53,6 @@ namespace TrafficLights
 
         private void addCar()
         {
-            //label3.Text = $"{carsOnFirstPosition.Count}";
-
             Random random = new Random();
             int stripNum = random.Next(0, 8);
 
@@ -88,20 +86,21 @@ namespace TrafficLights
 
                 return;
             }
-            
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Car car = new Car(1)
-            {
-                Image = Properties.Resources.blueSquare,
-                Size = new Size(26, 26),
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Location = new Point(40, 292)
-            };
-            Controls.Add(car);
-            car.BringToFront();
+            //Car car = new Car(1)
+            //{
+            //    Image = Properties.Resources.blueSquare,
+            //    Size = new Size(26, 26),
+            //    SizeMode = PictureBoxSizeMode.StretchImage,
+            //    Location = new Point(40, 292)
+            //};
+            //Controls.Add(car);
+            //car.BringToFront();
         }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < carMoveList.Count; i++)
@@ -152,6 +151,7 @@ namespace TrafficLights
                 }
                 carsOnFirstPosition.RemoveAll(isHorizontalMovingCar);
             }
+
             else if (trafficLightState == 2)
             {
                 for (int i = 0; i < carsOnFirstPosition.Count; i++)
@@ -178,6 +178,7 @@ namespace TrafficLights
                 }
                 carsOnFirstPosition.RemoveAll(isVerticalMovingCar);
             }
+
             for (int i = 0; i < stripList.Count; i++)
             {
                 int carNum = 0;
@@ -192,14 +193,17 @@ namespace TrafficLights
                 }
             }
         }
+
         private bool isHorizontalMovingCar(Car car)
         {
             return (new int[] { 1, 2, 5, 6 }).Contains(car.strip);
         }
+
         private bool isVerticalMovingCar(Car car)
         {
             return (new int[] { 3, 4, 7, 8 }).Contains(car.strip);
         }
+
         private void changeLights()
         {
             if (timeSinceLstChange == 3 && trafficLightState == 0 && lastMovingState == 2)
@@ -234,7 +238,6 @@ namespace TrafficLights
                 trafficLightState = 0;
                 timeSinceLstChange = 0;
             }
-            
         }
 
         private void addPositions()
@@ -333,9 +336,6 @@ namespace TrafficLights
             stripList.Add(strip8);
         }
 
-        private void Simulation_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Simulation_Load(object sender, EventArgs e) { }
     }
 }
