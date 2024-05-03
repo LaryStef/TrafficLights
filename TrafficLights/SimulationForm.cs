@@ -16,6 +16,8 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
+        Random random = new Random();
+
         private int duration;
         private int[] intencity;
         private int elapsedTime = 0;
@@ -47,15 +49,34 @@ namespace TrafficLights
             label2.Text = elapsedTime.ToString() + " секунд";
             if (elapsedTime == duration) { Close(); }
             if (timeSinceLstChange == 3 || timeSinceLstChange == 10) { changeLights(); }
-            addCar();
             elapsedTime++;
             timeSinceLstChange++;
+            for (int i = 0; i < intencity.Length; i++)
+            {
+                switch (intencity[i])
+                {
+                    case 1:
+                        if (random.Next(0, 15) == 0) { addCar(i); }
+                        break;
+                    case 2:
+                        if (random.Next(0, 8) == 0) { addCar(i); }
+                        break;
+                    case 3:
+                        if (random.Next(0, 4) == 0) { addCar(i); }
+                        break;
+                    case 4:
+                        if (random.Next(0, 3) == 0) { addCar(i); }
+                        break;
+                    case 5:
+                        if (random.Next(0, 2) == 0) { addCar(i); }
+                        break;
+                }
+            }
         }
-
-        private void addCar()
+        
+        private void addCar(int road)
         {
-            Random random = new Random();
-            int stripNum = random.Next(0, 8);
+            int stripNum = road * 2 + random.Next(0, 2);
 
             if (stripList[stripNum].CountCars() < 4)
             {
@@ -125,7 +146,7 @@ namespace TrafficLights
                     carMoveList.Remove(carMoveList[i]);
                 }
             }
-
+            
             if (trafficLightState == 1)                                                                                                                                                                               
             {
                 for (int i = 0; i < carsOnFirstPosition.Count; i++)
@@ -194,7 +215,7 @@ namespace TrafficLights
                 }
             }
         }
-
+        
         private bool isHorizontalMovingCar(Car car)
         {
             return (new int[] { 1, 2, 5, 6 }).Contains(car.strip);
@@ -338,5 +359,10 @@ namespace TrafficLights
         }
 
         private void Simulation_Load(object sender, EventArgs e) { }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
