@@ -16,7 +16,7 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
-        Random random = new Random();
+        private Random random = new Random();
 
         private int duration;
         private int[] intencity;

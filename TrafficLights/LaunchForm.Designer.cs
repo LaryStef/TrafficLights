@@ -40,9 +40,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.intensity2 = new System.Windows.Forms.RadioButton();
             this.intensity3 = new System.Windows.Forms.RadioButton();
+            this.intensity2 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.intensity10 = new System.Windows.Forms.RadioButton();
             this.intensity9 = new System.Windows.Forms.RadioButton();
@@ -92,12 +92,10 @@
             // intensity1
             // 
             this.intensity1.AutoSize = true;
-            this.intensity1.Checked = true;
             this.intensity1.Location = new System.Drawing.Point(20, 21);
             this.intensity1.Name = "intensity1";
             this.intensity1.Size = new System.Drawing.Size(35, 20);
             this.intensity1.TabIndex = 4;
-            this.intensity1.TabStop = true;
             this.intensity1.Text = "1";
             this.intensity1.UseVisualStyleBackColor = true;
             // 
@@ -108,7 +106,6 @@
             this.intensity4.Name = "intensity4";
             this.intensity4.Size = new System.Drawing.Size(35, 20);
             this.intensity4.TabIndex = 5;
-            this.intensity4.TabStop = true;
             this.intensity4.Text = "4";
             this.intensity4.UseVisualStyleBackColor = true;
             // 
@@ -119,7 +116,6 @@
             this.intensity5.Name = "intensity5";
             this.intensity5.Size = new System.Drawing.Size(35, 20);
             this.intensity5.TabIndex = 6;
-            this.intensity5.TabStop = true;
             this.intensity5.Text = "5";
             this.intensity5.UseVisualStyleBackColor = true;
             // 
@@ -137,12 +133,10 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
             this.radioButton4.Location = new System.Drawing.Point(6, 21);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(74, 20);
             this.radioButton4.TabIndex = 9;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "низкая";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
@@ -160,6 +154,7 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
+            this.radioButton6.Checked = true;
             this.radioButton6.Location = new System.Drawing.Point(256, 21);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(82, 20);
@@ -171,7 +166,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(472, 113);
+            this.label5.Location = new System.Drawing.Point(459, 113);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 16);
             this.label5.TabIndex = 12;
@@ -179,8 +174,8 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(419, 110);
-            this.maskedTextBox1.Mask = "0000";
+            this.maskedTextBox1.Location = new System.Drawing.Point(409, 110);
+            this.maskedTextBox1.Mask = "000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(44, 22);
             this.maskedTextBox1.TabIndex = 13;
@@ -201,6 +196,28 @@
             this.groupBox1.Text = "дорога 1";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // intensity3
+            // 
+            this.intensity3.AutoSize = true;
+            this.intensity3.Checked = true;
+            this.intensity3.Location = new System.Drawing.Point(20, 73);
+            this.intensity3.Name = "intensity3";
+            this.intensity3.Size = new System.Drawing.Size(35, 20);
+            this.intensity3.TabIndex = 6;
+            this.intensity3.TabStop = true;
+            this.intensity3.Text = "3";
+            this.intensity3.UseVisualStyleBackColor = true;
+            // 
+            // intensity2
+            // 
+            this.intensity2.AutoSize = true;
+            this.intensity2.Location = new System.Drawing.Point(20, 47);
+            this.intensity2.Name = "intensity2";
+            this.intensity2.Size = new System.Drawing.Size(35, 20);
+            this.intensity2.TabIndex = 5;
+            this.intensity2.Text = "2";
+            this.intensity2.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButton4);
@@ -212,28 +229,6 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Выберите скорость симуляции";
-            // 
-            // intensity2
-            // 
-            this.intensity2.AutoSize = true;
-            this.intensity2.Location = new System.Drawing.Point(20, 47);
-            this.intensity2.Name = "intensity2";
-            this.intensity2.Size = new System.Drawing.Size(35, 20);
-            this.intensity2.TabIndex = 5;
-            this.intensity2.TabStop = true;
-            this.intensity2.Text = "2";
-            this.intensity2.UseVisualStyleBackColor = true;
-            // 
-            // intensity3
-            // 
-            this.intensity3.AutoSize = true;
-            this.intensity3.Location = new System.Drawing.Point(20, 73);
-            this.intensity3.Name = "intensity3";
-            this.intensity3.Size = new System.Drawing.Size(35, 20);
-            this.intensity3.TabIndex = 6;
-            this.intensity3.TabStop = true;
-            this.intensity3.Text = "3";
-            this.intensity3.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -256,7 +251,6 @@
             this.intensity10.Name = "intensity10";
             this.intensity10.Size = new System.Drawing.Size(35, 20);
             this.intensity10.TabIndex = 6;
-            this.intensity10.TabStop = true;
             this.intensity10.Text = "5";
             this.intensity10.UseVisualStyleBackColor = true;
             this.intensity10.CheckedChanged += new System.EventHandler(this.radioButton24_CheckedChanged);
@@ -268,13 +262,13 @@
             this.intensity9.Name = "intensity9";
             this.intensity9.Size = new System.Drawing.Size(35, 20);
             this.intensity9.TabIndex = 5;
-            this.intensity9.TabStop = true;
             this.intensity9.Text = "4";
             this.intensity9.UseVisualStyleBackColor = true;
             // 
             // intensity8
             // 
             this.intensity8.AutoSize = true;
+            this.intensity8.Checked = true;
             this.intensity8.Location = new System.Drawing.Point(20, 73);
             this.intensity8.Name = "intensity8";
             this.intensity8.Size = new System.Drawing.Size(35, 20);
@@ -290,19 +284,16 @@
             this.intensity7.Name = "intensity7";
             this.intensity7.Size = new System.Drawing.Size(35, 20);
             this.intensity7.TabIndex = 5;
-            this.intensity7.TabStop = true;
             this.intensity7.Text = "2";
             this.intensity7.UseVisualStyleBackColor = true;
             // 
             // intensity6
             // 
             this.intensity6.AutoSize = true;
-            this.intensity6.Checked = true;
             this.intensity6.Location = new System.Drawing.Point(20, 21);
             this.intensity6.Name = "intensity6";
             this.intensity6.Size = new System.Drawing.Size(35, 20);
             this.intensity6.TabIndex = 4;
-            this.intensity6.TabStop = true;
             this.intensity6.Text = "1";
             this.intensity6.UseVisualStyleBackColor = true;
             this.intensity6.CheckedChanged += new System.EventHandler(this.radioButton28_CheckedChanged);
@@ -328,7 +319,6 @@
             this.intensity20.Name = "intensity20";
             this.intensity20.Size = new System.Drawing.Size(35, 20);
             this.intensity20.TabIndex = 6;
-            this.intensity20.TabStop = true;
             this.intensity20.Text = "5";
             this.intensity20.UseVisualStyleBackColor = true;
             // 
@@ -339,7 +329,6 @@
             this.radioButton19.Name = "radioButton19";
             this.radioButton19.Size = new System.Drawing.Size(35, 20);
             this.radioButton19.TabIndex = 5;
-            this.radioButton19.TabStop = true;
             this.radioButton19.Text = "4";
             this.radioButton19.UseVisualStyleBackColor = true;
             this.radioButton19.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
@@ -347,6 +336,7 @@
             // intensity18
             // 
             this.intensity18.AutoSize = true;
+            this.intensity18.Checked = true;
             this.intensity18.Location = new System.Drawing.Point(20, 73);
             this.intensity18.Name = "intensity18";
             this.intensity18.Size = new System.Drawing.Size(35, 20);
@@ -362,19 +352,16 @@
             this.intensity17.Name = "intensity17";
             this.intensity17.Size = new System.Drawing.Size(35, 20);
             this.intensity17.TabIndex = 5;
-            this.intensity17.TabStop = true;
             this.intensity17.Text = "2";
             this.intensity17.UseVisualStyleBackColor = true;
             // 
             // intensity16
             // 
             this.intensity16.AutoSize = true;
-            this.intensity16.Checked = true;
             this.intensity16.Location = new System.Drawing.Point(20, 21);
             this.intensity16.Name = "intensity16";
             this.intensity16.Size = new System.Drawing.Size(35, 20);
             this.intensity16.TabIndex = 4;
-            this.intensity16.TabStop = true;
             this.intensity16.Text = "1";
             this.intensity16.UseVisualStyleBackColor = true;
             // 
@@ -399,7 +386,6 @@
             this.intensity15.Name = "intensity15";
             this.intensity15.Size = new System.Drawing.Size(35, 20);
             this.intensity15.TabIndex = 6;
-            this.intensity15.TabStop = true;
             this.intensity15.Text = "5";
             this.intensity15.UseVisualStyleBackColor = true;
             // 
@@ -410,13 +396,13 @@
             this.intensity14.Name = "intensity14";
             this.intensity14.Size = new System.Drawing.Size(35, 20);
             this.intensity14.TabIndex = 5;
-            this.intensity14.TabStop = true;
             this.intensity14.Text = "4";
             this.intensity14.UseVisualStyleBackColor = true;
             // 
             // intensity13
             // 
             this.intensity13.AutoSize = true;
+            this.intensity13.Checked = true;
             this.intensity13.Location = new System.Drawing.Point(20, 73);
             this.intensity13.Name = "intensity13";
             this.intensity13.Size = new System.Drawing.Size(35, 20);
@@ -432,19 +418,16 @@
             this.intensity12.Name = "intensity12";
             this.intensity12.Size = new System.Drawing.Size(35, 20);
             this.intensity12.TabIndex = 5;
-            this.intensity12.TabStop = true;
             this.intensity12.Text = "2";
             this.intensity12.UseVisualStyleBackColor = true;
             // 
             // intensity11
             // 
             this.intensity11.AutoSize = true;
-            this.intensity11.Checked = true;
             this.intensity11.Location = new System.Drawing.Point(20, 21);
             this.intensity11.Name = "intensity11";
             this.intensity11.Size = new System.Drawing.Size(35, 20);
             this.intensity11.TabIndex = 4;
-            this.intensity11.TabStop = true;
             this.intensity11.Text = "1";
             this.intensity11.UseVisualStyleBackColor = true;
             // 
