@@ -150,7 +150,6 @@ namespace TrafficLights
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(81, 20);
             this.radioButton5.TabIndex = 10;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "средняя";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
