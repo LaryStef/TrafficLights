@@ -1,4 +1,6 @@
-﻿namespace TrafficLights
+﻿using System.Windows.Forms;
+
+namespace TrafficLights
 {
     partial class LaunchForm
     {
@@ -19,7 +21,7 @@
             }
             base.Dispose(disposing);
         }
-
+        
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
@@ -198,21 +200,13 @@
             // 
             // intensity3
             // 
-            this.intensity3.AutoSize = true;
-<<<<<<< HEAD
             this.intensity3.Checked = true;
-=======
->>>>>>> features
-            this.intensity3.Location = new System.Drawing.Point(20, 73);
+            this.intensity3.Location = new System.Drawing.Point(20, 69);
             this.intensity3.Name = "intensity3";
-            this.intensity3.Size = new System.Drawing.Size(35, 20);
-            this.intensity3.TabIndex = 6;
-<<<<<<< HEAD
+            this.intensity3.Size = new System.Drawing.Size(35, 24);
+            this.intensity3.TabIndex = 7;
             this.intensity3.TabStop = true;
-=======
->>>>>>> features
             this.intensity3.Text = "3";
-            this.intensity3.UseVisualStyleBackColor = true;
             // 
             // intensity2
             // 

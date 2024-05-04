@@ -16,12 +16,10 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
-<<<<<<< HEAD
         private Random random = new Random();
-=======
-        Random random = new Random();
+
+        
         TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
->>>>>>> features
 
         private int duration;
         private int[] intencity;
