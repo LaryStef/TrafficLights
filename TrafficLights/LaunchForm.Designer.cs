@@ -196,7 +196,7 @@ namespace TrafficLights
             this.groupBox1.Size = new System.Drawing.Size(96, 158);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "дорога 1";
+            this.groupBox1.Text = "левая";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // intensity3
@@ -243,7 +243,7 @@ namespace TrafficLights
             this.groupBox6.Size = new System.Drawing.Size(96, 158);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "дорога 2";
+            this.groupBox6.Text = "верхняя";
             // 
             // intensity10
             // 
@@ -311,7 +311,7 @@ namespace TrafficLights
             this.groupBox3.Size = new System.Drawing.Size(95, 158);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "дорога 4";
+            this.groupBox3.Text = "нижняя";
             // 
             // intensity20
             // 
@@ -378,7 +378,7 @@ namespace TrafficLights
             this.groupBox4.Size = new System.Drawing.Size(92, 158);
             this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "дорога 3";
+            this.groupBox4.Text = "правая";
             // 
             // intensity15
             // 
