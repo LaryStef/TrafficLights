@@ -146,7 +146,7 @@ namespace TrafficLights
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(138, 21);
+            this.radioButton5.Location = new System.Drawing.Point(159, 21);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(81, 20);
             this.radioButton5.TabIndex = 10;
@@ -158,7 +158,7 @@ namespace TrafficLights
             // 
             this.radioButton6.AutoSize = true;
             this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(256, 21);
+            this.radioButton6.Location = new System.Drawing.Point(302, 21);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(82, 20);
             this.radioButton6.TabIndex = 11;
@@ -224,9 +224,9 @@ namespace TrafficLights
             this.groupBox2.Controls.Add(this.radioButton4);
             this.groupBox2.Controls.Add(this.radioButton5);
             this.groupBox2.Controls.Add(this.radioButton6);
-            this.groupBox2.Location = new System.Drawing.Point(219, 343);
+            this.groupBox2.Location = new System.Drawing.Point(204, 343);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(344, 52);
+            this.groupBox2.Size = new System.Drawing.Size(397, 52);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Выберите скорость симуляции";
