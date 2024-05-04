@@ -16,24 +16,23 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
-        private Random random = new Random();
-        private TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
+        private readonly Random random = new Random();
+        private readonly TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
+        private readonly bool simpleMode;
 
-        private bool simpleMode;
-
-        private int duration;
-        private int[] intencity;
+        private readonly int duration;
+        private readonly int[] intencity;
         private int elapsedTime = 0;
         private int trafficLightState = 0;
         private int timeSinceLstChange = 26;
 
         private List<int> statesList = new List<int>();
-        private List<RoadStrip> stripList = new List<RoadStrip>();
-        private List<CarMove> carMoveList = new List<CarMove>();
-        private List<Car> carsOnFirstPosition = new List<Car>();
-        private List<Point> finishPositions = new List<Point>();
-        private List<Point> startPositions = new List<Point>();
-        private List<Point> firstLinePositions = new List<Point>();
+        private readonly List<RoadStrip> stripList = new List<RoadStrip>();
+        private readonly List<CarMove> carMoveList = new List<CarMove>();
+        private readonly List<Car> carsOnFirstPosition = new List<Car>();
+        private readonly List<Point> finishPositions = new List<Point>();
+        private readonly List<Point> startPositions = new List<Point>();
+        private readonly List<Point> firstLinePositions = new List<Point>();
 
         public Simulation(int duration, int[] intencity, int speed, bool simpleMode)
         {
@@ -50,7 +49,7 @@ namespace TrafficLights
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label2.Text = elapsedTime.ToString() + " секунд";
+            label2.Text = elapsedTime.ToString() + "с";
             if (elapsedTime == duration) { Close(); }
 
             if (timeSinceLstChange == 26)
@@ -152,19 +151,6 @@ namespace TrafficLights
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Car car = new Car(1)
-            //{
-            //    Image = Properties.Resources.blueSquare,
-            //    Size = new Size(26, 26),
-            //    SizeMode = PictureBoxSizeMode.StretchImage,
-            //    Location = new Point(40, 292)
-            //};
-            //Controls.Add(car);
-            //car.BringToFront();
-        }
-
         private void timer2_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < carMoveList.Count; i++)
@@ -196,19 +182,23 @@ namespace TrafficLights
                     switch (carsOnFirstPosition[i].strip)
                     {
                         case 1:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 2:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 1, 0));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 5:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 6:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], -1, 0));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                     }
@@ -223,19 +213,23 @@ namespace TrafficLights
                     switch (carsOnFirstPosition[i].strip)
                     {
                         case 3:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 4:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 0, 1));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 7:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                         case 8:
-                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location, finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
+                            carMoveList.Add(new CarMove(carsOnFirstPosition[i], carsOnFirstPosition[i].Location,
+                                finishPositions[carsOnFirstPosition[i].strip - 1], 0, -1));
                             stripList[carsOnFirstPosition[i].strip - 1].DequeueCar();
                             break;
                     }
@@ -250,7 +244,8 @@ namespace TrafficLights
                 {
                     if (car.arrived && car.Location != stripList[i].positions[carNum])
                     {
-                        carMoveList.Add(new CarMove(car, car.Location, stripList[i].positions[carNum], stripList[i].shifts[0], stripList[i].shifts[1]));
+                        carMoveList.Add(new CarMove(car, car.Location, stripList[i].positions[carNum],
+                            stripList[i].shifts[0], stripList[i].shifts[1]));
                         car.arrived = false;
                     }
                     carNum++;
@@ -397,6 +392,11 @@ namespace TrafficLights
         private void timer3_Tick(object sender, EventArgs e)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
