@@ -55,34 +55,11 @@ namespace TrafficLights
             simulationForm.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton28_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton24_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton10_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void groupBox1_Enter(object sender, EventArgs e) { }
+        private void radioButton28_CheckedChanged(object sender, EventArgs e) { }
+        private void Form1_Load(object sender, EventArgs e) { }
+        private void radioButton24_CheckedChanged(object sender, EventArgs e) { }
+        private void radioButton10_CheckedChanged(object sender, EventArgs e) { }
     }
 }

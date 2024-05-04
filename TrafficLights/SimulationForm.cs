@@ -16,15 +16,12 @@ namespace TrafficLights
 {
     public partial class Simulation : Form
     {
-        private readonly Random random = new Random();
-        private readonly TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
-        private readonly bool simpleMode;
-
-        private readonly int duration;
-        private readonly int[] intencity;
         private int elapsedTime = 0;
         private int trafficLightState = 0;
         private int timeSinceLstChange = 26;
+        private readonly int duration;
+        private readonly int[] intencity;
+        private readonly bool simpleMode;
 
         private List<int> statesList = new List<int>();
         private readonly List<RoadStrip> stripList = new List<RoadStrip>();
@@ -33,6 +30,9 @@ namespace TrafficLights
         private readonly List<Point> finishPositions = new List<Point>();
         private readonly List<Point> startPositions = new List<Point>();
         private readonly List<Point> firstLinePositions = new List<Point>();
+
+        private readonly Random random = new Random();
+        private readonly TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
 
         public Simulation(int duration, int[] intencity, int speed, bool simpleMode)
         {
@@ -388,15 +388,5 @@ namespace TrafficLights
         }
 
         private void Simulation_Load(object sender, EventArgs e) { }
-
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
