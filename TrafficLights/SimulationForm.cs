@@ -17,9 +17,7 @@ namespace TrafficLights
     public partial class Simulation : Form
     {
         private Random random = new Random();
-
-        
-        TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
+        private TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
 
         private int duration;
         private int[] intencity;
@@ -63,13 +61,8 @@ namespace TrafficLights
                 label12.Text = stateHandler.verticalJam.ToString() + " " + stateHandler.horizontalJam.ToString();
                 statesList = stateHandler.GetStatesArray();
 
-                string a = "";
-                for (int i = 0; i < 26; i++)
-                {
-                    a += statesList[i].ToString();
-                }
-                label3.Text = a;
-                
+                label3.Text = $"Левый и правый светофоры: {statesList.Count(i => i == 1)}c";
+                label12.Text = $"Верхний и нижний светофоры: {statesList.Count(i => i == 2)}c";
 
                 timeSinceLstChange = 0;
             }
