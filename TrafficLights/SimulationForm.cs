@@ -17,14 +17,15 @@ namespace TrafficLights
     public partial class Simulation : Form
     {
         Random random = new Random();
+        TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
 
         private int duration;
         private int[] intencity;
         private int elapsedTime = 0;
-        private int lastMovingState = 1;
         private int trafficLightState = 0;
-        private int timeSinceLstChange = 0;
+        private int timeSinceLstChange = 26;
 
+        private List<int> statesList = new List<int>();
         private List<RoadStrip> stripList = new List<RoadStrip>();
         private List<CarMove> carMoveList = new List<CarMove>();
         private List<Car> carsOnFirstPosition = new List<Car>();
@@ -48,9 +49,46 @@ namespace TrafficLights
         {
             label2.Text = elapsedTime.ToString() + " секунд";
             if (elapsedTime == duration) { Close(); }
-            if (timeSinceLstChange == 3 || timeSinceLstChange == 10) { changeLights(); }
+
+            if (timeSinceLstChange == 26)
+            {
+                int sum = 0;
+                foreach (int strip in new int[] { 0, 1, 4, 5 })
+                {
+                    sum += stripList[strip].CountCars();
+                }
+                stateHandler.horizontalJam = sum;
+                label12.Text = stateHandler.verticalJam.ToString() + " " + stateHandler.horizontalJam.ToString();
+                statesList = stateHandler.GetStatesArray();
+
+                string a = "";
+                for (int i = 0; i < 26; i++)
+                {
+                    a += statesList[i].ToString();
+                }
+                label3.Text = a;
+                
+
+                timeSinceLstChange = 0;
+            }
+
+            if (timeSinceLstChange != 0)
+            {
+                if (statesList[timeSinceLstChange] == 2 && statesList[timeSinceLstChange - 1] == 0)
+                {
+                    int sum = 0;
+                    foreach (int strip in new int[] { 2, 3, 6, 7 })
+                    {
+                        sum += stripList[strip].CountCars();
+                    }
+                    stateHandler.verticalJam = sum;
+                }
+            }
+
+            changeLights(statesList[timeSinceLstChange]);
             elapsedTime++;
             timeSinceLstChange++;
+
             for (int i = 0; i < intencity.Length; i++)
             {
                 switch (intencity[i])
@@ -226,39 +264,31 @@ namespace TrafficLights
             return (new int[] { 3, 4, 7, 8 }).Contains(car.strip);
         }
 
-        private void changeLights()
+        private void changeLights(int state)
         {
-            if (timeSinceLstChange == 3 && trafficLightState == 0 && lastMovingState == 2)
+            switch (state)
             {
-                // включаем движение для горизонтальных
-                pictureBox2.Image = Properties.Resources.greenTrafficLight;
-                pictureBox3.Image = Properties.Resources.greenTrafficLight;
-                pictureBox4.Image = Properties.Resources.redTrafficLight;
-                pictureBox5.Image = Properties.Resources.redTrafficLight;
-                trafficLightState = 1;
-                lastMovingState = 1;
-                timeSinceLstChange = 0;
-            }
-            if (timeSinceLstChange == 3 && trafficLightState == 0 && lastMovingState == 1)
-            {
-                // включаем движение для вертикальных
-                pictureBox2.Image = Properties.Resources.redTrafficLight;
-                pictureBox3.Image = Properties.Resources.redTrafficLight;
-                pictureBox4.Image = Properties.Resources.greenTrafficLight;
-                pictureBox5.Image = Properties.Resources.greenTrafficLight;
-                trafficLightState = 2;
-                lastMovingState = 2;
-                timeSinceLstChange = 0;
-            }
-            if (timeSinceLstChange == 10 && trafficLightState != 0)
-            {
-                // включаем паузу
-                pictureBox2.Image = Properties.Resources.redTrafficLight;
-                pictureBox3.Image = Properties.Resources.redTrafficLight;
-                pictureBox4.Image = Properties.Resources.redTrafficLight;
-                pictureBox5.Image = Properties.Resources.redTrafficLight;
-                trafficLightState = 0;
-                timeSinceLstChange = 0;
+                case 0:
+                    pictureBox2.Image = Properties.Resources.redTrafficLight;
+                    pictureBox3.Image = Properties.Resources.redTrafficLight;
+                    pictureBox4.Image = Properties.Resources.redTrafficLight;
+                    pictureBox5.Image = Properties.Resources.redTrafficLight;
+                    trafficLightState = 0;
+                    break;
+                case 1:
+                    pictureBox2.Image = Properties.Resources.greenTrafficLight;
+                    pictureBox3.Image = Properties.Resources.greenTrafficLight;
+                    pictureBox4.Image = Properties.Resources.redTrafficLight;
+                    pictureBox5.Image = Properties.Resources.redTrafficLight;
+                    trafficLightState = 1;
+                    break;
+                case 2:
+                    pictureBox2.Image = Properties.Resources.redTrafficLight;
+                    pictureBox3.Image = Properties.Resources.redTrafficLight;
+                    pictureBox4.Image = Properties.Resources.greenTrafficLight;
+                    pictureBox5.Image = Properties.Resources.greenTrafficLight;
+                    trafficLightState = 2;
+                    break;
             }
         }
 

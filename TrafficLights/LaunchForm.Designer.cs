@@ -40,9 +40,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.intensity2 = new System.Windows.Forms.RadioButton();
             this.intensity3 = new System.Windows.Forms.RadioButton();
+            this.intensity2 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.intensity10 = new System.Windows.Forms.RadioButton();
             this.intensity9 = new System.Windows.Forms.RadioButton();
@@ -108,7 +108,6 @@
             this.intensity4.Name = "intensity4";
             this.intensity4.Size = new System.Drawing.Size(35, 20);
             this.intensity4.TabIndex = 5;
-            this.intensity4.TabStop = true;
             this.intensity4.Text = "4";
             this.intensity4.UseVisualStyleBackColor = true;
             // 
@@ -119,7 +118,6 @@
             this.intensity5.Name = "intensity5";
             this.intensity5.Size = new System.Drawing.Size(35, 20);
             this.intensity5.TabIndex = 6;
-            this.intensity5.TabStop = true;
             this.intensity5.Text = "5";
             this.intensity5.UseVisualStyleBackColor = true;
             // 
@@ -201,6 +199,26 @@
             this.groupBox1.Text = "дорога 1";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // intensity3
+            // 
+            this.intensity3.AutoSize = true;
+            this.intensity3.Location = new System.Drawing.Point(20, 73);
+            this.intensity3.Name = "intensity3";
+            this.intensity3.Size = new System.Drawing.Size(35, 20);
+            this.intensity3.TabIndex = 6;
+            this.intensity3.Text = "3";
+            this.intensity3.UseVisualStyleBackColor = true;
+            // 
+            // intensity2
+            // 
+            this.intensity2.AutoSize = true;
+            this.intensity2.Location = new System.Drawing.Point(20, 47);
+            this.intensity2.Name = "intensity2";
+            this.intensity2.Size = new System.Drawing.Size(35, 20);
+            this.intensity2.TabIndex = 5;
+            this.intensity2.Text = "2";
+            this.intensity2.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButton4);
@@ -212,28 +230,6 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Выберите скорость симуляции";
-            // 
-            // intensity2
-            // 
-            this.intensity2.AutoSize = true;
-            this.intensity2.Location = new System.Drawing.Point(20, 47);
-            this.intensity2.Name = "intensity2";
-            this.intensity2.Size = new System.Drawing.Size(35, 20);
-            this.intensity2.TabIndex = 5;
-            this.intensity2.TabStop = true;
-            this.intensity2.Text = "2";
-            this.intensity2.UseVisualStyleBackColor = true;
-            // 
-            // intensity3
-            // 
-            this.intensity3.AutoSize = true;
-            this.intensity3.Location = new System.Drawing.Point(20, 73);
-            this.intensity3.Name = "intensity3";
-            this.intensity3.Size = new System.Drawing.Size(35, 20);
-            this.intensity3.TabIndex = 6;
-            this.intensity3.TabStop = true;
-            this.intensity3.Text = "3";
-            this.intensity3.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
