@@ -198,15 +198,15 @@
             // 
             // intensity3
             // 
-            this.intensity3.AutoSize = true;
-            this.intensity3.Checked = true;
-            this.intensity3.Location = new System.Drawing.Point(20, 73);
-            this.intensity3.Name = "intensity3";
-            this.intensity3.Size = new System.Drawing.Size(35, 20);
-            this.intensity3.TabIndex = 6;
-            this.intensity3.TabStop = true;
-            this.intensity3.Text = "3";
-            this.intensity3.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Controls.Add(this.radioButton6);
+            this.groupBox2.Location = new System.Drawing.Point(219, 343);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(344, 52);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Выберите скорость симуляции";
             // 
             // intensity2
             // 
