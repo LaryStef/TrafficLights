@@ -17,6 +17,8 @@ namespace TrafficLights
     public partial class Simulation : Form
     {
         Random random = new Random();
+
+
         TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
 
         private int duration;
