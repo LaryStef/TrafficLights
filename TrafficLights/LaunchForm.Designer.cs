@@ -64,6 +64,7 @@ namespace TrafficLights
             this.intensity12 = new System.Windows.Forms.RadioButton();
             this.intensity11 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -124,7 +125,7 @@ namespace TrafficLights
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(290, 401);
+            this.button1.Location = new System.Drawing.Point(297, 427);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(181, 48);
             this.button1.TabIndex = 7;
@@ -440,11 +441,22 @@ namespace TrafficLights
             this.label3.TabIndex = 22;
             this.label3.Text = "Выберите интенсивность трафика для каждой из дорог";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(229, 401);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(332, 20);
+            this.checkBox1.TabIndex = 23;
+            this.checkBox1.Text = "Режим без умного переключения светофоров";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // LaunchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 498);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -509,6 +521,7 @@ namespace TrafficLights
         private System.Windows.Forms.RadioButton intensity12;
         private System.Windows.Forms.RadioButton intensity11;
         private System.Windows.Forms.Label label3;
+        private CheckBox checkBox1;
     }
 }
 

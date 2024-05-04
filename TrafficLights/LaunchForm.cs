@@ -23,6 +23,7 @@ namespace TrafficLights
             int duration;
             int[] intensityArr;
             int speed;
+            bool simpleMode = false;
 
             if (maskedTextBox1.Text == "" || Convert.ToInt32(maskedTextBox1.Text) == 0)
             {
@@ -48,7 +49,9 @@ namespace TrafficLights
                 speed = 1;
             }
 
-            Form simulationForm = new Simulation(duration, intensityArr, speed);
+            if (checkBox1.Checked) { simpleMode = true; }
+
+            Form simulationForm = new Simulation(duration, intensityArr, speed, simpleMode);
             simulationForm.Show();
         }
 

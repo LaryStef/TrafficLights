@@ -19,6 +19,8 @@ namespace TrafficLights
         private Random random = new Random();
         private TrafficLightsStateHandler stateHandler = new TrafficLightsStateHandler();
 
+        private bool simpleMode;
+
         private int duration;
         private int[] intencity;
         private int elapsedTime = 0;
@@ -33,15 +35,16 @@ namespace TrafficLights
         private List<Point> startPositions = new List<Point>();
         private List<Point> firstLinePositions = new List<Point>();
 
-        public Simulation(int duration, int[] intencity, int speed)
+        public Simulation(int duration, int[] intencity, int speed, bool simpleMode)
         {
             InitializeComponent();
-            timer1.Interval = 1000 * speed;
-            timer2.Interval = 10 * speed;
             this.intencity = intencity;
             this.duration = duration;
+            this.simpleMode = simpleMode;
 
             addPositions();
+            timer1.Interval = 1000 * speed;
+            timer2.Interval = 10 * speed;
             timer2.Enabled = true;
         }
 
@@ -59,6 +62,12 @@ namespace TrafficLights
                 }
                 stateHandler.horizontalJam = sum;
                 label12.Text = stateHandler.verticalJam.ToString() + " " + stateHandler.horizontalJam.ToString();
+                
+                if (simpleMode)
+                {
+                    stateHandler.horizontalJam = 1; stateHandler.verticalJam = 1;
+                }
+                
                 statesList = stateHandler.GetStatesArray();
 
                 label3.Text = $"Левый и правый светофоры: {statesList.Count(i => i == 1)}c";
