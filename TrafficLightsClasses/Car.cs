@@ -1,9 +1,9 @@
 ﻿using System.Windows.Forms;
 
 
-namespace TrafficLights
+namespace TrafficLightsClasses
 {
-    internal class Car: PictureBox
+    public class Car : PictureBox
     {
         public int strip;
         public bool arrived = false;
@@ -13,3 +13,4 @@ namespace TrafficLights
         }
     }
 }
+

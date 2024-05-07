@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using System.Drawing;
 
 
-namespace TrafficLights
+namespace TrafficLightsClasses
 {
-    internal class RoadStrip
+    public class RoadStrip
     {
         public Queue<Car> cars = new Queue<Car>();
         public Point[] positions;
@@ -30,3 +30,5 @@ namespace TrafficLights
         }
     }
 }
+
+

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
 
-namespace TrafficLights
+namespace TrafficLightsClasses
 {
-    internal class TrafficLightsStateHandler
+    public class TrafficLightsStateHandler
     {
         private const int loopDuration = 26;
         private const int pause = 3;
@@ -44,3 +44,4 @@ namespace TrafficLights
         }
     }
 }
+

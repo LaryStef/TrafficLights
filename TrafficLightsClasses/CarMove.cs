@@ -1,9 +1,8 @@
 ﻿using System.Drawing;
 
-
-namespace TrafficLights
+namespace TrafficLightsClasses
 {
-    internal class CarMove
+    public class CarMove
     {
         public Car car;
         public Point start;
