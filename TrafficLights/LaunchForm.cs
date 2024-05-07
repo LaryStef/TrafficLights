@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
 
 namespace TrafficLights
 {
@@ -10,6 +10,25 @@ namespace TrafficLights
         public LaunchForm()
         {
             InitializeComponent();
+
+            try
+            {
+                string path = Path.GetFullPath("UserSettings.txt");
+                StreamReader reader = new StreamReader(path);
+                string line = reader.ReadLine();
+                string[] data = line.Split(new char[] { ';', });
+
+                maskedTextBox1.Text = data[0];
+                groupBox1.Controls.OfType<RadioButton>().ToList().Where(el => el.Text == data[1]).ToList()[0].Checked = true;
+                groupBox6.Controls.OfType<RadioButton>().ToList().Where(el => el.Text == data[2]).ToList()[0].Checked = true;
+                groupBox4.Controls.OfType<RadioButton>().ToList().Where(el => el.Text == data[3]).ToList()[0].Checked = true;
+                groupBox3.Controls.OfType<RadioButton>().ToList().Where(el => el.Text == data[4]).ToList()[0].Checked = true;
+                groupBox2.Controls.OfType<RadioButton>().ToList().Where(el => el.Text == data[5]).ToList()[0].Checked = true;
+
+
+                checkBox1.Checked = Convert.ToBoolean(data[6]);
+            }
+            catch { }
         }
 
         private void button1_Click(object sender, EventArgs e)

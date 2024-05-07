@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TrafficLightsClasses;
 
+
 namespace TrafficLights
 {
     public partial class Simulation : Form
